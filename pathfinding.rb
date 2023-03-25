@@ -1,13 +1,7 @@
 require "colorize"
 
 def pathfinding(charaposy, charaposx, mundo)
-  puts "Mostrar expansion de caminos? (y/n) "
-  prompt_numeros = gets.chomp()
-  if prompt_numeros == "y" or prompt_numeros == "Y"
-    show_numeros = true
-  else
-    show_numeros = false
-  end
+
 
   #Funcion que calcula los 4 ejes cardinales
   expandir = ->(cell) {
@@ -73,31 +67,9 @@ def pathfinding(charaposy, charaposx, mundo)
     buffer = expansion
     lista.concat(expansion)
 
-    #visualizacion optativa de todos los caminos
-    if show_numeros
-      lista.each do |el|
-        display_counter = el[:counter]
-        if display_counter < 32
-          display_counter = display_counter.to_s(32)
-        else
-          display_counter = "!"
-        end
-        mundo.universo!(Path.new(el[:y], el[:x], display_counter))
-      end
-    end
-    system "clear"
-    mundo.update
-    mundo.mapa?
-    if show_numeros
-      print "Calculando distancia: " + basecount.to_s + "\n"
-    end
-
     #vaciar para arrancar el siguiente turno
     expansion = []
     basecount += 1
-    if show_numeros
-      sleep(0.1)
-    end
   end
 
   #PASO 2: ESCOGER EL CAMINO MAS CORTO
@@ -136,10 +108,8 @@ def pathfinding(charaposy, charaposx, mundo)
   final_path.each do |el|
     # mundo.universo!(Path.new(el[:y], el[:x], (el[:counter].to_s(32))))
     mundo.universo!(Path.new(el[:y], el[:x], "+".colorize(:yellow)))
-    system "clear"
-    mundo.update
-    mundo.mapa?
-    print "Camino: ".colorize(:yellow) + "x:" + el[:x].to_s + " y:" + el[:y].to_s + " distancia:" + el[:counter].to_s + "\n"
-    sleep(0.1)
   end
+  # print "Camino: ".colorize(:yellow) + "x:" + el[:x].to_s + " y:" + el[:y].to_s + " distancia:" + el[:counter].to_s + "\n"
+  mundo.update
+  mundo.mapa?
 end

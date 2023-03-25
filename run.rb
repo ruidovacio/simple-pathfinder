@@ -34,11 +34,11 @@ class Mundo
   def mapa? #print del mapa
     print "    "
     @mapa[0].each_with_index do |w, wi|
-      print wi.to_s(16) + " "
+      print wi.to_s(32) + " "
     end
     puts "\n\n"
     @mapa.each_with_index do |y, yi|
-      print yi.to_s(16) + "   "
+      print yi.to_s(32) + "   "
       y.each_with_index do |x, xi|
         print @mapa[yi][xi].to_s + " "
       end
@@ -131,7 +131,6 @@ mundo.universo!(origen)
 destino = Destino.new(destinoy, destinox)
 mundo.universo!(destino)
 
-system "clear"
 mundo.update
 mundo.mapa?
 destino.calcular_path!(origen.posy?, origen.posx?, mundo)
