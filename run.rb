@@ -1,7 +1,7 @@
 require "colorize"
-require_relative "pathfinding.rb"
-require_relative "entities.rb"
-require_relative "parser.rb"
+require_relative "./dev/pathfinding.rb"
+require_relative "./dev/entities.rb"
+require_relative "./dev/parser.rb"
 
 class Mundo
   def initialize
