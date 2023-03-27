@@ -32,9 +32,6 @@ def parse
     end
   end
 
-  for el in gridmap
-    puts el.to_s
-  end
 
   return gridmap
 end
